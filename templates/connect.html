@@ -9,51 +9,72 @@
   <!-- Third party dependencies. -->
   <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/1.0/fabric.css">
   <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/1.0/fabric.components.css">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+  html body{
+    background-color: #f4511e;
+  }
+  .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+  }
+  .bg-grey {
+     background-color: #f6f6f6;
+  }
+  h1, h2, h3, h4 {
+    text-align: center;
+  }
+  .container-fluid {
+      padding: 60px 50px;
+  }
+  .navbar-header {
+    box-sizing: border-box;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-family: 'Segoe UI Semilight WestEuropean', 'Segoe UI Semilight', 'Segoe WP Semilight', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+    font-size: 17px;
+    padding-left: 20px;
+    position: relative;
+    font-weight: bold;
+  }
+
+  @media (min-width: 480px) {
     .navbar-header {
-      box-sizing: border-box;
-      display: block;
-      height: 40px;
-      line-height: 40px;
-      font-family: 'Segoe UI Semilight WestEuropean', 'Segoe UI Semilight', 'Segoe WP Semilight', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
-      font-size: 17px;
-      padding-left: 20px;
-      position: relative;
-      font-weight: bold;
+      float: left;
+      margin-right: 20px;
+      font-size: 20px;
+      padding: 0;
     }
-    
-    @media (min-width: 480px) {
-      .navbar-header {
-        float: left;
-        margin-right: 20px;
-        font-size: 20px;
-        padding: 0;
-      }
-    }
+  }
   </style>
 
 </head>
 
-<body class="ms-Grid">
-  <div class="ms-Grid-row">
+<!--<body class="ms-Grid">-->
+<body>
+  <!--<div class="ms-Grid-row">-->
     <!-- App navigation bar markup. -->
-    <div class="ms-NavBar">
-      <ul class="ms-NavBar-items">
-        <li class="navbar-header">NewsFed Microsoft Login</li>
-      </ul>
-    </div>
-
+    <!--<div class="ms-NavBar">-->
+      <div class="jumbotron text-center">
+      <!--<ul class="ms-NavBar-items">-->
+      <!--<ul>-->
+        <!--<li class="navbar-header">NewsFed Microsoft Login</li>-->
+        <h2 class="text-center">NewsFed Microsoft Login</h2>
+        <center><img src="http://tiger-hacks.com/res/tiger_big.png" width="150" height="150" alt="Tiger"></center>
+      <!--</ul>-->
+    <!--</div>-->
     <!-- App main content markup. -->
-    <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
-      <div>
-        <p class="ms-font-xl">Use the button to connect your Microsoft account to NewsFed</p>
+  <!--  <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">-->
+      <!--<div>-->
+        <h2 class="text-center">Use the button to connect your Microsoft account to NewsFed</p>
         <button class="ms-Button" onclick="window.location.href='/login'">
           <span class="ms-Button-label">Connect to Microsoft</span>
         </button>
       </div>
-    </div>
-  </div>
+    <!--</div>-->
+  <!--</div>-->
 </body>
 
 </html>
