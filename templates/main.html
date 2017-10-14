@@ -17,7 +17,11 @@
       background-color: #f6f6f6;
   }
   .container-fluid {
-      padding: 60px 50px;
+      padding: 60px 60px;
+      text-align: center;
+  }
+  h2 {
+    text-align: center;
   }
   </style>
 </head>
@@ -30,10 +34,8 @@
   </div>
 <!-- Container (About Section) -->
 <div class="container-fluid">
-  <h2>About Company Page</h2>
-  <h4>Lorem ipsum..</h4>
-  <p>Lorem ipsum..</p>
-  <button class="btn btn-default btn-lg">Get in Touch</button>
+  <h2>{{ article_title }}</h2>
+  <p>{{ article_text }}</p>
 </div>
 
 <div class="container-fluid bg-grey">

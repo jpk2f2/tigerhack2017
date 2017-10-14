@@ -41,6 +41,16 @@ msgraphapi = oauth.remote_app( \
     authorize_url='https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
                              )
 
+# shit for the news reader
+import news_scraper
+# config = news_scraper.newspaper.Config()
+# config.memoize_articles = False
+# config.MIN_WORD_COUNT = 100
+# config.fetch_images = False
+news_site = 'http://foxnews.com'
+news = news_scraper.buildArticleBase(news_site)
+
+
 @app.route('/')
 def index():
     """Handler for home page."""
@@ -93,7 +103,10 @@ def main():
     if session['alias']:
         username = session['alias']
         email_address = session['userEmailAddress']
-        return render_template('main.html', name=username, emailAddress=email_address)
+        article = news_scraper.getFirstArticle(news)
+        articleTitle = news_scraper.returnArticleTitle(article)
+        articleText = news_scraper.returnArticleText(article)
+        return render_template('main.html', article_title=articleTitle, article_text=articleText)
     else:
         return render_template('main.html')
 

@@ -15,6 +15,14 @@
   html body{
     background-color: #f4511e;
   }
+  .testing {
+      margin: 0;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     -ms-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%);
+  }
   .jumbotron {
       background-color: #f4511e;
       color: #fff;
@@ -58,6 +66,7 @@
     <!-- App navigation bar markup. -->
     <!--<div class="ms-NavBar">-->
       <div class="jumbotron text-center">
+        <div class = "testing">
       <!--<ul class="ms-NavBar-items">-->
       <!--<ul>-->
         <!--<li class="navbar-header">NewsFed Microsoft Login</li>-->
@@ -72,6 +81,7 @@
         <button class="ms-Button" onclick="window.location.href='/login'">
           <span class="ms-Button-label">Connect to Microsoft</span>
         </button>
+       </div>
       </div>
     <!--</div>-->
   <!--</div>-->
