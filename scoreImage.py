@@ -11,15 +11,15 @@ params = urllib.parse.urlencode({
 })
 
 # Replace the example URL below with the URL of the image you want to analyze.
-body = "{ 'url': 'http://www.goodwp.com/images/201207/goodwp.com_22864.jpg' }"
+body = "{ 'url': 'https://blog.caranddriver.com/wp-content/uploads/2009/07/2010-Ferrari-458-Italia-1011-626x382.jpg' }"
 
 try:
     # NOTE: You must use the same region in your REST call as you used to obtain your subscription keys.
-    #   For example, if you obtained your subscription keys from westcentralus, replace "westus" in the 
+    #   For example, if you obtained your subscription keys from westcentralus, replace "westus" in the
     #   URL below with "westcentralus".
     conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
     conn.request("POST", "/emotion/v1.0/recognize?%s" % params, body, headers)
-    response = conn.getresponse()
+    response = conn.getresponse():
     data = response.read()
     print(data)
     conn.close()
