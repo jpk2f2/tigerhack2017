@@ -18,6 +18,7 @@ def getFirstArticle(listData):
 	article = listData.articles[0]
 	return article
 
+#does not work, don't use
 def getRandomArticle(listData):
 	#num = getNumArticles(listData)
 	#x = random.randint(0,num)
@@ -35,9 +36,8 @@ def printArticleText(article):
 	article.download()
 	article.parse()
 	print(article.text)
-	
+
+#doesn't appear to work, don't use	
 def getNumArticles(listData):
-	i = 0
-	for article in listData.articles:
-		i = i + 1
-	return i-1
+	i = len(listData.articles)
+	return i
