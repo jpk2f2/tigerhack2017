@@ -11,11 +11,11 @@ import random
 #print(article.text)
 
 def buildArticleBase(address):
-	articleList = newspaper.build(address)
+	articleList = newspaper.build(address, memoize_articles=False)
 	return articleList
 
 def getFirstArticle(listData):
-	article = listData.articles[0]
+	article = listData.articles[1]
 	return article
 
 #does not work, don't use
@@ -31,6 +31,22 @@ def returnArticleText(article):
 	article.download()
 	article.parse()
 	return article.text
+
+def returnArticleURL(article):
+	article.download()
+	article.parse()
+	return article.url
+
+def returnArticleTitle(article):
+	article.download()
+	article.parse()
+	return article.title
+
+def returnArticleAuthors(article):
+	article.download()
+	article.parse()
+	author_list = article.authors
+	return "; ".join(author_list)
 
 def printArticleText(article):
 	article.download()
