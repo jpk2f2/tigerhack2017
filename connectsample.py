@@ -43,7 +43,11 @@ msgraphapi = oauth.remote_app( \
 
 # shit for the news reader
 import news_scraper
-news_site = 'http://cnn.com'
+# config = news_scraper.newspaper.Config()
+# config.memoize_articles = False
+# config.MIN_WORD_COUNT = 100
+# config.fetch_images = False
+news_site = 'http://foxnews.com'
 news = news_scraper.buildArticleBase(news_site)
 
 
