@@ -1,109 +1,57 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme Company Page</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>O365 Connect sample</title>
-
-  <!-- Third party dependencies. -->
-  <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/1.0/fabric.css">
-  <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/1.0/fabric.components.css">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    .navbar-header {
-      box-sizing: border-box;
-      display: block;
-      height: 40px;
-      line-height: 40px;
-      font-family: 'Segoe UI Semilight WestEuropean', 'Segoe UI Semilight', 'Segoe WP Semilight', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
-      font-size: 17px;
-      padding-left: 20px;
-      position: relative;
-      font-weight: bold;
-    }
-    
-    @media (min-width: 480px) {
-      .navbar-header {
-        float: left;
-        margin-right: 20px;
-        font-size: 20px;
-        padding: 0;
-      }
-    }
-    
-    .ms-TextField {
-      width: 300px;
-      display: inline-block;
-    }
-    
-    .icon-holder {
-      display: inline-block;
-      width: 30px;
-    }
-    
-    .big-icon {
-      font-size: 30px;
-      top: 5px;
-      position: relative;
-    }
-    
-    input[type=submit] {
-      color: #333333;
-      font-family: 'Segoe UI Semibold WestEuropean', 'Segoe UI Semibold', 'Segoe WP Semibold', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
-      font-size: 14px;
-      font-weight: normal;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      box-shadow: none;
-      background-color: #f4f4f4;
-      border: 1px solid #f4f4f4;
-      cursor: pointer;
-      display: inline-block;
-      height: 32px;
-      min-width: 80px;
-      padding: 4px 20px 6px;
-    }
+  .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+      padding: 100px 25px;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .container-fluid {
+      padding: 60px 50px;
+  }
   </style>
-  
 </head>
+<body>
 
-<body class="ms-Grid">
-  <div class="ms-Grid-row">
-  <!-- App navigation bar markup. -->
-  <div class="ms-NavBar">
-    <ul class="ms-NavBar-items">
-      <li class="navbar-header">Microsoft Graph Connect sample</li>
-      <li class="ms-NavBar-item ms-NavBar-item--right" onclick="window.location.href='/logout'"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
-    </ul>
-  </div>
-
-  <!-- App main content markup. -->
-  <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
-    <div>
-      <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{ name }}!</h2>
-      <p class="ms-font-xl">You're now connected to Office 365. Click the button below to send a message from your account using the Microsoft Graph API. </p>
-      <form action="/send_mail">
-        <div class="ms-TextField">
-          <input name="emailAddress" class="ms-TextField-field" value="{{ emailAddress }}">
-        </div>
-        <div class="icon-holder">
-          <input type="submit" value="Send mail">
-        </div>
-      </form>
-      {% if showSuccess == 'true' %}
-      <div>
-        <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{ emailAddress }}!</p>
+<div class="jumbotron text-center">
+  <h1>Company</h1> 
+  <p>We specialize in blablabla</p> 
+  <form class="form-inline">
+    <div class="input-group">
+      <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-danger">Subscribe</button>
       </div>
-      {% elif showError == 'true' %}
-      <div>
-        <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't send an email.</p>        
-      </div>
-      {% endif %}
     </div>
-  </div>
+  </form>
 </div>
-</body>
 
+<!-- Container (About Section) -->
+<div class="container-fluid">
+  <h2>About Company Page</h2>
+  <h4>Lorem ipsum..</h4>      
+  <p>Lorem ipsum..</p>
+  <button class="btn btn-default btn-lg">Get in Touch</button>
+</div>
+
+<div class="container-fluid bg-grey">
+  <h2>Our Values</h2>
+  <h4><strong>MISSION:</strong> Our mission lorem ipsum..</h4>      
+  <p><strong>VISION:</strong> Our vision Lorem ipsum..
+</div>
+
+</body>
 </html>
+
+

@@ -7,8 +7,8 @@ def takePic():
     cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
     cam.start()
     img = cam.get_image()
-    pygame.image.save(img, "../testPic/photo.bmp")
-    os.chdir('/home/david/testPic')
+    pygame.image.save(img, "../testPics/photo.bmp")
+    os.chdir('../testPics')
     time.sleep(.1)
     os.system('git init')
     time.sleep(.1)
@@ -19,3 +19,6 @@ def takePic():
     os.system('git push origin master')
     pygame.camera.quit()
     
+
+if __name__=='__main__':
+    takePic()
