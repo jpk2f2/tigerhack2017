@@ -1,5 +1,5 @@
 # tigerhack 2017
-blah
+
 
 ## Brainstorming
 
