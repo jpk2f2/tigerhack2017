@@ -23,13 +23,13 @@ def getRandomArticle(listData):
 	#x = random.randint(0,num)
 	#article = listData.articles[x]
 	#return article
-        x = random.choice(listData.articles)
-        return x
+    x = random.choice(listData.articles)
+    return x
 
-def  returnArticleText(article):
+def returnArticleText(article):
 	article.download()
 	article.parse()
-	return(article.text)
+	return article.text
 
 def printArticleText(article):
 	article.download()
@@ -37,7 +37,5 @@ def printArticleText(article):
 	print(article.text)
 	
 def getNumArticles(listData):
-	i = 0
-	for article in listData.articles:
-		i = i + 1
-	return i-1
+	numArticles = len(listData.articles)
+	return numArticles
