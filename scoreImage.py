@@ -11,8 +11,8 @@ params = urllib.parse.urlencode({
 })
 
 # Replace the example URL below with the URL of the image you want to analyze.
-#body = "{ 'url': 'https://raw.githubusercontent.com/davidemily/testPics/master/photo.bmp' }"
-body = "{ 'url': 'http://craftycat3.ddns.net/photos/download.jpg' }"
+body = "{ 'url': 'https://raw.githubusercontent.com/davidemily/testPics/master/photo.bmp' }"
+#body = "{ 'url': 'http://craftycat3.ddns.net/photos/download.jpg' }"
 
 try:
     # NOTE: You must use the same region in your REST call as you used to obtain your subscription keys.
