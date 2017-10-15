@@ -1,5 +1,5 @@
 # tigerhack 2017
-![](./tiger_big.jpg)
+![](./tiger_big.png)
 ## NewsFed
 #### For this hackathon we created a web application to judge your happiness when reading a news article.  
 #### If you liked the article, you'll be given an opportunity to send the article in an email to your top email contacts.
