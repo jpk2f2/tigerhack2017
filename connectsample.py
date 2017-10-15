@@ -38,7 +38,7 @@ msgraphapi = oauth.remote_app( \
     'microsoft',
     consumer_key=client_id,
     consumer_secret=client_secret,
-    request_token_params={'scope': 'User.Read Mail.Send'},
+    request_token_params={'scope': 'User.Read Mail.Send People.Read'},
     base_url='https://graph.microsoft.com/v1.0/',
     request_token_url=None,
     access_token_method='POST',
@@ -154,13 +154,13 @@ def call_sendmail_endpoint(access_token, name, email_address):
     """Call the resource URL for the sendMail action."""
     send_mail_url = 'https://graph.microsoft.com/v1.0/me/microsoft.graph.sendMail'
 
-	# set request headers
+    # set request headers
     headers = {'User-Agent' : 'python_tutorial/1.0',
                'Authorization' : 'Bearer {0}'.format(access_token),
                'Accept' : 'application/json',
                'Content-Type' : 'application/json'}
 
-	# Use these headers to instrument calls. Makes it easier to correlate
+    # Use these headers to instrument calls. Makes it easier to correlate
     # requests and responses in case of problems and is a recommended best
     # practice.
     request_id = str(uuid.uuid4())
@@ -168,7 +168,7 @@ def call_sendmail_endpoint(access_token, name, email_address):
                        'return-client-request-id' : 'true'}
     headers.update(instrumentation)
 
-	# Create the email that is to be sent via the Graph API
+    # Create the email that is to be sent via the Graph API
     email = {'Message': {'Subject': 'Welcome to the Microsoft Graph Connect sample for Python',
                          'Body': {'ContentType': 'HTML',
                                   'Content': render_template('email.html', name=name)},
@@ -193,37 +193,12 @@ def submit():
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
     title = article.title
-
-    headers = {'User-Agent' : 'python_tutorial/1.0',
-                'Authorization' : 'Bearer {0}'.format(access_token),
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json'}
-
-
-    return render_template(results.html, )
-
-
+    friends = getPeople()
+    return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_json=friends)
 
 def getPeople():
-    #headers = {'User-Agent' : 'NewsFed',
-    #           'Authorization' : 'Bearer {0}'.format(access_token),
-    #           'Accept' : 'application/json',
-    #           'Content-Type' : 'application/json'}
-   request_id = str(uuid.uuid4())
 
-   headers = {'User-Agent' : 'NewsFed',
-              'Authorization' : 'Bearer {0}'.format(session['access_token']),
-              'Accept' : 'application.json',
-              'content-type' : 'application/json;odata.metadata=minimal;',
-              'cache-control' : 'private',
-              'client-request-id' : request_id,
-              'request-id' : request_id}
+    me_response = msgraphapi.get('me/people')
 
-    #instrumentation = {'client-request-id' : request_id,
-    #                   'return-client-request-id' : 'true'}
-
-
-
-    friends = requests.get('https://graph.microsoft.com/v1.0/me/people', headers)
-    friends.raise_for_status()
+    friends = json.loads(json.dumps(me_response.data))
     return friends
