@@ -1,5 +1,6 @@
 #####Python 3.2 #############
 import http.client, urllib.request, urllib.parse, urllib.error, base64, sys, json
+import numpy as np
 def scoreImage():
 
     headers = {
@@ -32,6 +33,13 @@ def scoreImage():
     ####################################
 
 def parseScore(json_blob):
+    
+    key_list = np.asarray([key for key in json_blob.keys])
+    value_list = [json_blob[key[i]] for i in range(len(key_list))]
+    top_2_index = np.argsort(value_list)[-2:]
+    top_2_lists = list(key_list[top_2_index])+list(value_list[top_2_index])
+    return top_2_lists
+
 
 
 if __name__=='__main__':
