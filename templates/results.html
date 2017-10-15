@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>NewsFed</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+  }
+  .glyphicon {
+    font-size: 35px;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .container-fluid {
+      padding: 60px 60px;
+      text-align: center;
+      white-space: pre-wrap;
+  }
+  .btn {
+    background-color: #f4511e;
+    color: #FFFFFF;
+    text-align: center;
+    border: 4px;
+    font-size: 28px;
+    width: 200px;
+    margin: auto;
+  }
+  h1, h2, h4 {
+    text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <div class="jumbotron text-center">
+    <p style="margin-left:5%; position: absolute;"><buttontype="button" onclick="window.location.href='/logout'" <span class="glyphicon glyphicon-log-out"></p>
+    <h1>NewsFed</h1>
+    <img src="http://tiger-hacks.com/res/tiger_big.png" width="150" height="150" alt="Tiger">
+    <br>
+    <p>Get Fed Up With News</p>
+  </div>
+<!-- Container (About Section) -->
+<div class="container-fluid">
+  <center><img src="https://raw.githubusercontent.com/davidemily/testPics/master/photo.bmp" width="300" height="300" alt="yourpic.jpg"></center>
+  <h2>{{ article_title }}</h2>
+  <p>By: <h3>{{ article_author }}</h3></p>
+  <p>{{ article_text }}</p>
+</div>
+
+<div class="container-fluid bg-grey">
+  <h2>Don't feed the tiger!</h2>
+</div>
+
+
+</body>
+</html>
