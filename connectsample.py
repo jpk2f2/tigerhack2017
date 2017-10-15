@@ -14,7 +14,7 @@ from flask import Flask, redirect, url_for, session, request, render_template
 from flask_oauthlib.client import OAuth
 import news_scraper
 
-global urlHold
+#global urlHold
 
 # read private credentials from text file
 client_id, client_secret, *_ = open('_PRIVATE.txt').read().split('\n')
