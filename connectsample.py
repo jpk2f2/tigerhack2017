@@ -193,4 +193,4 @@ def submit():
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
     title = article.title
-    return render_template(results.html, )
+    return render_template('results.html', article_title=title, emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2)
