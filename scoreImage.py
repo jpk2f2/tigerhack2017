@@ -1,5 +1,5 @@
 #####Python 3.2 #############
-import http.client, urllib.request, urllib.parse, urllib.error, base64, sys
+import http.client, urllib.request, urllib.parse, urllib.error, base64, sys, json
 def scoreImage():
 
     headers = {
@@ -23,11 +23,16 @@ def scoreImage():
         conn.request("POST", "/emotion/v1.0/recognize?%s" % params, body, headers)
         response = conn.getresponse()
         data = response.read()
+        data = json.loads(data)
+        data = data[0]['scores']
         return data
         conn.close()
     except Exception as e:
         print(e.args)
     ####################################
+
+def parseScore(json_blob):
+
 
 if __name__=='__main__':
     test = scoreImage()
