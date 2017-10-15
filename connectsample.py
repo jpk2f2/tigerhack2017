@@ -197,14 +197,18 @@ def submit():
     title = article.title
     graph_blob = getPeople()
 
-    friends = dict()
+    friends_name = dict()
+    friends_email = dict()
+    i = 0
     for item in graph_blob['value']:
-        key = item['displayName']
-        value = item['scoredEmailAddresses'][0]['address']
-        friends[key] = value
+        
+        name = item['displayName']
+        email = item['scoredEmailAddresses'][0]['address']
+        friends_name[str(i)] = name
+        friends_email[str(i)] = email
+        i = i+1
 
-
-    return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_json=friends)
+    return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_name=friends_name, friends_email=friends_email)
 
 def getPeople():
 
