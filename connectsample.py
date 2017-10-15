@@ -158,7 +158,9 @@ def call_sendmail_endpoint(access_token, name, email_address):
 
 @app.route('/submit')
 def submit():
+
     takePic()
+    time.sleep(1.5)
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
     val_1 = '{:2.0f}'.format(val_1*100)
@@ -177,7 +179,7 @@ def submit():
         friends_name[str(i)] = name
         friends_email[str(i)] = email
         i = i+1
-    if data_blob['happiness'] > 0.3:
+    if data_blob['happiness'] > 0.2:
         return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_name=friends_name, friends_email=friends_email)
     else:
         return redirect('/main')        
