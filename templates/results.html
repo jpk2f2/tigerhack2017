@@ -8,6 +8,21 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type = "text/javascript">
+  function CreateTable(){
+    var tablecontents = "";
+    tablecontents = "<table class='table'>";
+    for(var i=0; i<10; i++){
+      tablecontents += "<tr>";
+      tablecontents += "<td><input type='checkbox' name='selectedMail'></td>"
+      tablecontents += "<td>" + (i+1) + "</td>";
+      tablecontents += "<td>" + (i+1) +"</td>";
+      tablecontents += "</tr>";
+    }
+    tablecontents += "</table>";
+    document.getElementById("tablespace").innerHTML = tablecontents;
+  }
+  </script>
   <style>
   .jumbotron {
       background-color: #f4511e;
@@ -38,7 +53,7 @@
   }
   </style>
 </head>
-<body>
+<body onload="CreateTable()">
   <div class="jumbotron text-center">
     <p style="margin-left:5%; position: absolute;"><buttontype="button" onclick="window.location.href='/logout'" <span class="glyphicon glyphicon-log-out"></p>
     <h1>NewsFed</h1>
@@ -49,9 +64,7 @@
 <!-- Container (About Section) -->
 <div class="container-fluid">
   <center><img src="https://raw.githubusercontent.com/davidemily/testPics/master/photo.bmp" width="640" height="480" alt="yourpic.jpg"></center>
-  <h2>{{ article_title }}</h2>
-  <p>{{ emo_1 }} , {{ val_1 }} <br> {{ emo_2 }} , {{ val_2 }} </p>
-  <p> {{ friends_json }}</p>
+  <p id="tablespace"></p>
 </div>
 
 <div class="container-fluid bg-grey">
@@ -59,5 +72,6 @@
 </div>
 
 
+  console.log("madeit here");
 </body>
 </html>
