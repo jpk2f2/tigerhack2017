@@ -189,11 +189,21 @@ def call_sendmail_endpoint(access_token, name, email_address):
 
 @app.route('/submit')
 def submit():
-    takePic()
+    # takePic()
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
+    val_1 = '{:2.0f}'.format(val_1*100)
+    val_2 = '{:2.0f}'.format(val_2*100)
     title = article.title
-    friends = getPeople()
+    graph_blob = getPeople()
+
+    friends = dict()
+    for item in graph_blob['value']:
+        key = item['displayName']
+        value = item['scoredEmailAddresses'][0]['address']
+        friends[key] = value
+
+
     return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_json=friends)
 
 def getPeople():
