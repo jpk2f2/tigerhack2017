@@ -193,4 +193,37 @@ def submit():
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
     title = article.title
+
+    headers = {'User-Agent' : 'python_tutorial/1.0',
+                'Authorization' : 'Bearer {0}'.format(access_token),
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'}
+
+
     return render_template(results.html, )
+
+
+
+def getPeople():
+    #headers = {'User-Agent' : 'NewsFed',
+    #           'Authorization' : 'Bearer {0}'.format(access_token),
+    #           'Accept' : 'application/json',
+    #           'Content-Type' : 'application/json'}
+   request_id = str(uuid.uuid4())
+
+   headers = {'User-Agent' : 'NewsFed',
+              'Authorization' : 'Bearer {0}'.format(session['access_token']),
+              'Accept' : 'application.json',
+              'content-type' : 'application/json;odata.metadata=minimal;',
+              'cache-control' : 'private',
+              'client-request-id' : request_id,
+              'request-id' : request_id}
+
+    #instrumentation = {'client-request-id' : request_id,
+    #                   'return-client-request-id' : 'true'}
+
+
+
+    friends = requests.get('https://graph.microsoft.com/v1.0/me/people', headers)
+    friends.raise_for_status()
+    return friends
