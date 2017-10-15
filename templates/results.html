@@ -20,7 +20,7 @@
     tablecontents = "<table class='table'>";
     for(var i=0; i<count; i++){
       tablecontents += "<tr>";
-      tablecontents += "<td><input type='checkbox' name='selectedMail'></td>"
+      tablecontents += "<td><input type='checkbox' checked="checked" name='selectedMail'></td>"
       tablecontents += "<td>" + friends[i] + "</td>";
       tablecontents += "<td>" + email[i] +"</td>";
       tablecontents += "</tr>";
@@ -29,6 +29,7 @@
     document.getElementById("tableBox").innerHTML = tablecontents;
   }
   </script>
+  <
   <style>
   .jumbotron {
       background-color: #f4511e;
@@ -76,10 +77,8 @@
 <div id="tableBox" class="container-fluid"> </div>
 
 <div class="container-fluid bg-grey">
-  <h2>Don't feed the tiger!</h2>
+  <button type="button" class="btn">Feed The Tigers</button>
 </div>
 
-
-  console.log("madeit here");
 </body>
 </html>
