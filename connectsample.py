@@ -123,9 +123,9 @@ def main():
         return render_template('main.html')
 
 @app.route('/send_mail')
-def send_mail():
+def send_mail(email_address):
     """Handler for send_mail route."""
-    email_address = request.args.get('emailAddress') # get email address from the form
+    # email_address = request.args.get('emailAddress') # get email address from the form
     response = call_sendmail_endpoint(session['access_token'], session['alias'], email_address)
     if response == 'SUCCESS':
         show_success = 'true'
@@ -197,6 +197,7 @@ def submit():
     title = article.title
     graph_blob = getPeople()
 
+    global friends_email
     friends_name = dict()
     friends_email = dict()
     i = 0
@@ -215,3 +216,8 @@ def getPeople():
     me_response = msgraphapi.get('me/people')
     friends = json.loads(json.dumps(me_response.data))
     return friends
+
+@app.route('/spam')
+def spam():
+    for key in friends_email.keys():
+        send_mail(friends_email[key])
