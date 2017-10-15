@@ -43,13 +43,19 @@ msgraphapi = oauth.remote_app( \
 
 # shit for the news reader
 import news_scraper
+#import pygameImage.py
 # config = news_scraper.newspaper.Config()
 # config.memoize_articles = False
 # config.MIN_WORD_COUNT = 100
 # config.fetch_images = False
-news_site = 'http://foxnews.com'
+news_site = 'http://arstechnica.com'
 news = news_scraper.buildArticleBase(news_site)
 
+@app.route('/submit')
+def submit():
+    #takePic()
+    main()
+    return redirect(url_for('main'))
 
 @app.route('/')
 def index():
