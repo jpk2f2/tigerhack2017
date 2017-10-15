@@ -4,7 +4,7 @@
 import json
 import sys
 import uuid
-
+import time
 # un-comment these lines to suppress the HTTP status messages sent to the console
 #import logging
 #logging.getLogger('werkzeug').setLevel(logging.ERROR)
@@ -113,9 +113,6 @@ def main():
         global article
         article = news_scraper.getRandomArticle(news)
         articleTitle = news_scraper.returnArticleTitle(article)
-        #global urlHold
-        #urlHold = news_scraper.returnArticleUrl(article)
-        #print(urlHold)
         articleText = news_scraper.returnArticleText(article)
         articleAuthor = news_scraper.returnArticleAuthors(article)
         return render_template('main.html', article_title=articleTitle, article_text=articleText, article_author=articleAuthor)
@@ -123,10 +120,10 @@ def main():
         return render_template('main.html')
 
 @app.route('/send_mail')
-def send_mail(email_address):
+def send_mail(email_address, name):
     """Handler for send_mail route."""
     # email_address = request.args.get('emailAddress') # get email address from the form
-    response = call_sendmail_endpoint(session['access_token'], session['alias'], email_address)
+    response = call_sendmail_endpoint(session['access_token'], name, email_address)
     if response == 'SUCCESS':
         show_success = 'true'
         show_error = 'false'
@@ -136,9 +133,6 @@ def send_mail(email_address):
         show_error = 'true'
 
     session['pageRefresh'] = 'false'
-    return render_template('main.html', name=session['alias'],
-                           emailAddress=email_address, showSuccess=show_success,
-                           showError=show_error)
 
 # If library is having trouble with refresh, uncomment below and implement
 # refresh handler see https://github.com/lepture/flask-oauthlib/issues/160 for
@@ -169,19 +163,14 @@ def call_sendmail_endpoint(access_token, name, email_address):
     headers.update(instrumentation)
 
     # Create the email that is to be sent via the Graph API
-    email = {'Message': {'Subject': 'Welcome to the Microsoft Graph Connect sample for Python',
+    email = {'Message': {'Subject': 'I think you would like this article.',
                          'Body': {'ContentType': 'HTML',
-                                  'Content': render_template('email.html', name=name)},
+                                  'Content': render_template('email.html', Friendname=name, SenderName=session['alias'], article_url=article.url)},
                          'ToRecipients': [{'EmailAddress': {'Address': email_address}}]
                         },
              'SaveToSentItems': 'true'}
 
-    response = requests.post(url=send_mail_url,
-                             headers=headers,
-                             data=json.dumps(email),
-                             verify=False,
-                             params=None)
-
+    response = requests.post(url=send_mail_url,headers=headers,data=json.dumps(email),verify=False,params=None)
     if response.ok:
         return 'SUCCESS'
     else:
@@ -189,14 +178,14 @@ def call_sendmail_endpoint(access_token, name, email_address):
 
 @app.route('/submit')
 def submit():
-    # takePic()
+    takePic()
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
     val_1 = '{:2.0f}'.format(val_1*100)
     val_2 = '{:2.0f}'.format(val_2*100)
     title = article.title
     graph_blob = getPeople()
-
+    global friends_name
     global friends_email
     friends_name = dict()
     friends_email = dict()
@@ -208,8 +197,10 @@ def submit():
         friends_name[str(i)] = name
         friends_email[str(i)] = email
         i = i+1
-
-    return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_name=friends_name, friends_email=friends_email)
+    if data_blob['happiness'] > 0.3:
+        return render_template('results.html', emo_1=emo_1, val_1=val_1, emo_2=emo_2, val_2=val_2, friends_name=friends_name, friends_email=friends_email)
+    else:
+        return redirect('/main')        
 
 def getPeople():
 
@@ -220,4 +211,8 @@ def getPeople():
 @app.route('/spam')
 def spam():
     for key in friends_email.keys():
-        send_mail(friends_email[key])
+        print(key, friends_email[key])
+        time.sleep(0.1)
+        # send_mail(friends_email[key], friends_name[key])
+
+    return redirect('/main')
