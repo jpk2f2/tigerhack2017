@@ -108,10 +108,11 @@ def main():
     if session['alias']:
         username = session['alias']
         email_address = session['userEmailAddress']
+        global article
         article = news_scraper.getRandomArticle(news)
         articleTitle = news_scraper.returnArticleTitle(article)
-        global urlHold
-        urlHold = news_scraper.returnArticleUrl(article)
+        #global urlHold
+        #urlHold = news_scraper.returnArticleUrl(article)
         #print(urlHold)
         articleText = news_scraper.returnArticleText(article)
         articleAuthor = news_scraper.returnArticleAuthors(article)
