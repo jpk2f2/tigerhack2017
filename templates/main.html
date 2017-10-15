@@ -33,8 +33,12 @@
     width: 200px;
     margin: auto;
   }
-  h1, h2, h4 {
+  h1, h2, h3, h4 {
     text-align: center;
+  }
+  p {
+    text-align: left;
+    font-size: 18px;
   }
   </style>
 </head>
@@ -44,13 +48,14 @@
     <h1>NewsFed</h1>
     <img src="http://tiger-hacks.com/res/tiger_big.png" width="150" height="150" alt="Tiger">
     <br>
-    <p>Get Fed Up With News</p>
+    <h3>Get Fed Up With News</h3>
   </div>
 <!-- Container (About Section) -->
 <div class="container-fluid">
   <h2>{{ article_title }}</h2>
-  <h3><p>By: {{ article_author }}</p></h3>
-  <p>{{ article_text }}</p>
+  <h4><p>By: {{ article_author }}</p></h4>
+  <img src='{{ article_image }}' width="640", height="360">
+  <p>{{ article_text }} </p>
 </div>
 
 <div class="container-fluid bg-grey">

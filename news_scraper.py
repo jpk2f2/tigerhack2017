@@ -12,7 +12,7 @@ import random
 
 
 def buildArticleBase(address):
-	articleList = newspaper.build(address, memoize_articles = False, MIN_WORD_COUNT = 100, fetch_images = False)
+	articleList = newspaper.build(address, memoize_articles = False, MIN_WORD_COUNT = 100, fetch_images = True)
 	return articleList
 
 def getFirstArticle(listData):
@@ -32,6 +32,12 @@ def returnArticleText(article):
 	article.download()
 	article.parse()
 	return article.text
+
+def returnArticleImage(article):
+	article.download()
+	article.parse()
+	return article.top_image
+
 
 def returnArticleUrl(article):
 	article.download()

@@ -1,22 +1,13 @@
-# Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
-# See LICENSE in the project root for license information.
-"""Main program for Microsoft Graph API Connect demo."""
 import json
 import sys
 import uuid
 import time
-# un-comment these lines to suppress the HTTP status messages sent to the console
-#import logging
-#logging.getLogger('werkzeug').setLevel(logging.ERROR)
-
 import requests
 from flask import Flask, redirect, url_for, session, request, render_template
 from flask_oauthlib.client import OAuth
 import news_scraper
 from scoreImage import scoreImage, parseScore
 from pygameImage import takePic
-
-#global urlHold
 
 # read private credentials from text file
 client_id, client_secret, *_ = open('_PRIVATE.txt').read().split('\n')
@@ -47,16 +38,9 @@ msgraphapi = oauth.remote_app( \
                              )
 
 # shit for the news reader
-#import news_scraper
-#import pygameImage.py
-# config = news_scraper.newspaper.Config()
-# config.memoize_articles = False
-# config.MIN_WORD_COUNT = 100
-# config.fetch_images = False
-news_site = 'http://arstechnica.com'
+
+news_site = 'http://cnn.com'
 news = news_scraper.buildArticleBase(news_site)
-
-
 
 @app.route('/')
 def index():
@@ -115,14 +99,14 @@ def main():
         articleTitle = news_scraper.returnArticleTitle(article)
         articleText = news_scraper.returnArticleText(article)
         articleAuthor = news_scraper.returnArticleAuthors(article)
-        return render_template('main.html', article_title=articleTitle, article_text=articleText, article_author=articleAuthor)
+        articleImage = news_scraper.returnArticleImage(article)
+        return render_template('main.html', article_title=articleTitle, article_text=articleText, article_author=articleAuthor, article_image=articleImage)
     else:
         return render_template('main.html')
 
 @app.route('/send_mail')
 def send_mail(email_address, name):
     """Handler for send_mail route."""
-    # email_address = request.args.get('emailAddress') # get email address from the form
     response = call_sendmail_endpoint(session['access_token'], name, email_address)
     if response == 'SUCCESS':
         show_success = 'true'
@@ -134,11 +118,7 @@ def send_mail(email_address, name):
 
     session['pageRefresh'] = 'false'
 
-# If library is having trouble with refresh, uncomment below and implement
-# refresh handler see https://github.com/lepture/flask-oauthlib/issues/160 for
-# instructions on how to do this. Implements refresh token logic.
-# @app.route('/refresh', methods=['POST'])
-# def refresh():
+
 @msgraphapi.tokengetter
 def get_token():
     """Return the Oauth token."""
@@ -213,6 +193,6 @@ def spam():
     for key in friends_email.keys():
         print(key, friends_email[key])
         time.sleep(0.1)
-        # send_mail(friends_email[key], friends_name[key])
+        send_mail(friends_email[key], friends_name[key])
 
     return redirect('/main')
