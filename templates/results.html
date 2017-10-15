@@ -11,21 +11,22 @@
   <script type = "text/javascript">
   function CreateTable(){
     //var temp = {{ friends_name }};
-    var friends = JSON.parse({{ friends_name }});
+    var friends = JSON.parse('{{ friends_name | tojson | safe }}');
   //  document.getElementById('username').innerHTML
-    var email = JSON.parse({{ friends_email }});
+    var email = JSON.parse('{{ friends_email | tojson | safe }}');
     var count = Object.keys(friends).length;
+    console.log(count);
     var tablecontents = "";
     tablecontents = "<table class='table'>";
-    for(var i=0; i<len; i++){
+    for(var i=0; i<count; i++){
       tablecontents += "<tr>";
       tablecontents += "<td><input type='checkbox' name='selectedMail'></td>"
-      tablecontents += "<td>" + friends.i + "</td>";
-      tablecontents += "<td>" + email.i +"</td>";
+      tablecontents += "<td>" + friends[i] + "</td>";
+      tablecontents += "<td>" + email[i] +"</td>";
       tablecontents += "</tr>";
     }
     tablecontents += "</table>";
-    document.getElementById("tablespace").innerHTML = tablecontents;
+    document.getElementById("tableBox").innerHTML = tablecontents;
   }
   </script>
   <style>
@@ -67,13 +68,14 @@
     <p>Get Fed Up With News</p>
   </div>
 <!-- Container (About Section) -->
-<div id="tableBox" class="container-fluid">
+<div class="container-fluid">
   <center><img src="https://raw.githubusercontent.com/davidemily/testPics/master/photo.bmp" width="640" height="480" alt="yourpic.jpg"></center>
   <h2>{{ article_title }}</h2>
   <p>{{ emo_1 }}: {{ val_1 }}% <br> {{ emo_2 }}: {{ val_2 }}% </p>
   <p> {{ friends_name }}</p>
   <p> {{ friends_email }}</p>
 </div>
+<div id="tableBox" class="container-fluid"> </div>
 
 <div class="container-fluid bg-grey">
   <h2>Don't feed the tiger!</h2>
