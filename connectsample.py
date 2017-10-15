@@ -158,7 +158,7 @@ def call_sendmail_endpoint(access_token, name, email_address):
 
 @app.route('/submit')
 def submit():
-    # takePic()
+    takePic()
     data_blob = scoreImage()
     emo_1, val_1, emo_2, val_2 = parseScore(data_blob)
     val_1 = '{:2.0f}'.format(val_1*100)
@@ -193,6 +193,6 @@ def spam():
     for key in friends_email.keys():
         print(key, friends_email[key])
         time.sleep(0.1)
-        # send_mail(friends_email[key], friends_name[key])
+        send_mail(friends_email[key], friends_name[key])
 
     return redirect('/main')
