@@ -13,6 +13,8 @@ import requests
 from flask import Flask, redirect, url_for, session, request, render_template
 from flask_oauthlib.client import OAuth
 import news_scraper
+import scoreImage
+import pygameImage
 
 #global urlHold
 
@@ -187,7 +189,7 @@ def call_sendmail_endpoint(access_token, name, email_address):
 
 @app.route('/submit')
 def submit():
-    #takePic()
-    #print(urlHold)
+    pygameImage.takePic()
+    blob = scoreImage()
     #main()
     return redirect(url_for('main'))
