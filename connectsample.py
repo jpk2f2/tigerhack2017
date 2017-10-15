@@ -112,7 +112,8 @@ def main():
         article = news_scraper.getRandomArticle(news)
         articleTitle = news_scraper.returnArticleTitle(article)
         articleText = news_scraper.returnArticleText(article)
-        return render_template('main.html', article_title=articleTitle, article_text=articleText)
+        articleAuthor = news_scraper.returnArticleAuthors(article)
+        return render_template('main.html', article_title=articleTitle, article_text=articleText, article_author=articleAuthor)
     else:
         return render_template('main.html')
 
