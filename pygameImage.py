@@ -16,7 +16,7 @@ def takePic():
     os.system('git add photo.bmp')
     # time.sleep(.1)
     os.system('git commit -m "new image"')
-    # time.sleep(.2)
+    time.sleep(.2)
     os.system('git push origin master')
     pygame.camera.quit()
     

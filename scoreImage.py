@@ -33,12 +33,13 @@ def scoreImage():
     ####################################
 
 def parseScore(json_blob):
-    
-    key_list = np.asarray([key for key in json_blob.keys])
-    value_list = [json_blob[key[i]] for i in range(len(key_list))]
+
+    key_list = np.asarray([key for key in json_blob.keys()])
+    value_list = np.asarray([json_blob[key_list[i]] for i in range(len(key_list))])
     top_2_index = np.argsort(value_list)[-2:]
     top_2_lists = list(key_list[top_2_index])+list(value_list[top_2_index])
-    return top_2_lists
+    emo_1, val_1, emo_2, val_2 = top_2_lists[1], top_2_lists[3], top_2_lists[0], top_2_lists[2]
+    return emo_1, val_1, emo_2, val_2
 
 
 
