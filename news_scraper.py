@@ -33,7 +33,7 @@ def returnArticleText(article):
 	article.parse()
 	return article.text
 
-def returnArticleURL(article):
+def returnArticleUrl(article):
 	article.download()
 	article.parse()
 	return article.url

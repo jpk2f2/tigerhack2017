@@ -12,6 +12,9 @@ import uuid
 import requests
 from flask import Flask, redirect, url_for, session, request, render_template
 from flask_oauthlib.client import OAuth
+import news_scraper
+
+global urlHold
 
 # read private credentials from text file
 client_id, client_secret, *_ = open('_PRIVATE.txt').read().split('\n')
@@ -42,7 +45,7 @@ msgraphapi = oauth.remote_app( \
                              )
 
 # shit for the news reader
-import news_scraper
+#import news_scraper
 #import pygameImage.py
 # config = news_scraper.newspaper.Config()
 # config.memoize_articles = False
@@ -51,11 +54,7 @@ import news_scraper
 news_site = 'http://arstechnica.com'
 news = news_scraper.buildArticleBase(news_site)
 
-@app.route('/submit')
-def submit():
-    #takePic()
-    main()
-    return redirect(url_for('main'))
+
 
 @app.route('/')
 def index():
@@ -111,6 +110,9 @@ def main():
         email_address = session['userEmailAddress']
         article = news_scraper.getRandomArticle(news)
         articleTitle = news_scraper.returnArticleTitle(article)
+        global urlHold
+        urlHold = news_scraper.returnArticleUrl(article)
+        #print(urlHold)
         articleText = news_scraper.returnArticleText(article)
         articleAuthor = news_scraper.returnArticleAuthors(article)
         return render_template('main.html', article_title=articleTitle, article_text=articleText, article_author=articleAuthor)
@@ -181,3 +183,10 @@ def call_sendmail_endpoint(access_token, name, email_address):
         return 'SUCCESS'
     else:
         return '{0}: {1}'.format(response.status_code, response.text)
+
+@app.route('/submit')
+def submit():
+    #takePic()
+    #print(urlHold)
+    #main()
+    return redirect(url_for('main'))
