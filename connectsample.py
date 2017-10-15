@@ -199,6 +199,5 @@ def submit():
 def getPeople():
 
     me_response = msgraphapi.get('me/people')
-
     friends = json.loads(json.dumps(me_response.data))
     return friends
