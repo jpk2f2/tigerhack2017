@@ -10,13 +10,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type = "text/javascript">
   function CreateTable(){
+    //var temp = {{ friends_name }};
+    var friends = JSON.parse({{ friends_name }});
+  //  document.getElementById('username').innerHTML
+    var email = JSON.parse({{ friends_email }});
+    var count = Object.keys(friends).length;
     var tablecontents = "";
     tablecontents = "<table class='table'>";
-    for(var i=0; i<10; i++){
+    for(var i=0; i<len; i++){
       tablecontents += "<tr>";
       tablecontents += "<td><input type='checkbox' name='selectedMail'></td>"
-      tablecontents += "<td>" + (i+1) + "</td>";
-      tablecontents += "<td>" + (i+1) +"</td>";
+      tablecontents += "<td>" + friends.i + "</td>";
+      tablecontents += "<td>" + email.i +"</td>";
       tablecontents += "</tr>";
     }
     tablecontents += "</table>";
@@ -62,7 +67,7 @@
     <p>Get Fed Up With News</p>
   </div>
 <!-- Container (About Section) -->
-<div class="container-fluid">
+<div id="tableBox" class="container-fluid">
   <center><img src="https://raw.githubusercontent.com/davidemily/testPics/master/photo.bmp" width="640" height="480" alt="yourpic.jpg"></center>
   <h2>{{ article_title }}</h2>
   <p>{{ emo_1 }}: {{ val_1 }}% <br> {{ emo_2 }}: {{ val_2 }}% </p>
